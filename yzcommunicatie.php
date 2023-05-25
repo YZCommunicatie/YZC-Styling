@@ -14,6 +14,9 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Uri\Uri;
 
+/**
+ *
+ */
 class plgSystemYzcommunicatie extends CMSPlugin
 {
     /**
@@ -40,7 +43,7 @@ class plgSystemYzcommunicatie extends CMSPlugin
     }
 
     public function onBeforeCompileHead() {
-        // Only work in the administrator
+        // Only for administrator
         if (!$this->app->isClient('administrator'))
         {
             return;
@@ -48,19 +51,17 @@ class plgSystemYzcommunicatie extends CMSPlugin
 
         $wa = $this->app->getDocument()->getWebAssetManager();
         $wa->registerAndUseStyle('style', 'https://klanten.yzcommunicatie.nl/custom-login.css');
-        return;
     }
 
-
     function onAfterRender() {
-        // Only work in the administrator
+        // Only for administrator
         if (!$this->app->isClient('administrator'))
         {
             return;
         }
 
         $body = $this->app->getBody();
-        $find[] = 'src="'.Uri::getInstance()->root().'media/templates/administrator/atum/images/logos/login.svg';
+        $find[] = 'src="' . Uri::getInstance()->root() . 'media/templates/administrator/atum/images/logos/login.svg';
         $find[] = 'href="index.php?option=com_cpanel&view=cpanel&dashboard=help"';
         $find[] = '<a href="https://docs.joomla.org/Special:MyLanguage/How_do_you_recover_or_reset_your_admin_password%3F" target="_blank" rel="noopener nofollow" title="Open Inloggegevens vergeten? in een nieuw venster">Inloggegevens vergeten?</a>';
         $find[] = '<a href="https://docs.joomla.org/Special:MyLanguage/How_do_you_recover_or_reset_your_admin_password%3F" target="_blank" rel="noopener nofollow" title="Open Forgot your login details? in new window">Forgot your login details?</a>';
@@ -72,5 +73,17 @@ class plgSystemYzcommunicatie extends CMSPlugin
 
         $body = str_replace($find, $replace, $body);
         $this->app->setBody($body);
+    }
+
+    public function onContentPrepare() {
+        // Only for frontend
+        if (!$this->app->isClient('site'))
+        {
+            return;
+        }
+
+        $themecolor = $this->params->get('themecolor', '#ffffff');
+        $doc = $this->app->getDocument();
+        $doc->setMetaData('theme-color', $themecolor);
     }
 }

@@ -7,12 +7,18 @@
 	<authorUrl>https://www.yzcommunicatie.nl</authorUrl>
     <copyright>Copyright (C) 2022 YZCommunicatie. All rights reserved.</copyright>
     <license>GNU General Public License version 3 or later;</license>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <scriptfile>script.php</scriptfile>
 	<files>
 		<filename plugin="yzcommunicatie">yzcommunicatie.php</filename>
 	</files>
 	<config>
+		<fields name="params" addfieldpath="/plugins/system">
+			<fieldset name="basic">
+				<field name="themecolor" type="color" default="#ffffff" label="Theme Color"
+					   description="Select your Theme-Color for metadata"/>
+			</fieldset>
+		</fields>
 	</config>
 	<updateservers>
 		<server type="extension" priority="1" name="YZCommunicatie login and admin styling">https://raw.githubusercontent.com/YZCommunicatie/YZC-Styling/master/manifest.xml</server>
