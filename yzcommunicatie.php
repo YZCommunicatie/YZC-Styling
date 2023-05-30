@@ -85,5 +85,24 @@ class plgSystemYzcommunicatie extends CMSPlugin
         $themecolor = $this->params->get('themecolor', '#ffffff');
         $doc = $this->app->getDocument();
         $doc->setMetaData('theme-color', $themecolor);
+
+        // SET HOMEPAGE PAGETITLE
+        $menu = Factory::getApplication()->getMenu();
+        $language = Factory::getLanguage();
+        $siteName = Factory::getConfig()->get('sitename');
+
+        if ($menu->getActive() == $menu->getDefault($language->getTag())) {
+            if ($this->params->get('homepagetitle')){
+                $doc->setTitle($this->params->get('homepagetitle'));
+            } else {
+                $doc->setTitle($siteName);
+            }
+        }
+
+        // SET CANONICAL URL
+        $link = Uri::getInstance()->toString();
+        $link = rtrim($link, '/');
+        $link = strtok($link, '?');
+        $doc->addHeadLink($link, 'canonical');
     }
 }
