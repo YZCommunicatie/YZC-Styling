@@ -1,11 +1,10 @@
 <?php
 /*
  *  package: YZC-Styling
- *  copyright: Copyright (c) 2022. Jeroen Moolenschot | YZCommunicatie
+ *  copyright: Copyright (c) 2025. Jeroen Moolenschot | YZCommunicatie
  *  license: GNU General Public License version 3 or later
  *  link: https://www.yzcommunicatie.nl
  */
-
 
 // No direct access to this file
 defined('_JEXEC') or die;
