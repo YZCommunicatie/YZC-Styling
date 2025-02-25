@@ -14,7 +14,7 @@
 		</tags>
 		<maintainer>Jeroen Moolenschot | YZCommunicatie</maintainer>
 		<maintainerurl>https://www.yzcommunicatie.nl</maintainerurl>
-		<targetplatform name="joomla" version="4"/>
+		<targetplatform name="joomla" version="4|5"/>
 		<section>Updates</section>
 	</update>
 </updates>
