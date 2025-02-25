@@ -85,10 +85,10 @@ class plgSystemYzcommunicatie extends CMSPlugin
         $doc = $this->app->getDocument();
         $doc->setMetaData('theme-color', $themecolor);
 
-        // SET HOMEPAGE PAGETITLE
-        $menu = Factory::getApplication()->getMenu();
-        $language = Factory::getLanguage();
-        $siteName = Factory::getConfig()->get('sitename');
+		// SET HOMEPAGE PAGETITLE
+		$menu     = $this->app->getMenu();
+		$language = $this->app->getLanguage();
+		$siteName = $this->app->getConfig()->get('sitename');
 
         if ($menu->getActive() == $menu->getDefault($language->getTag())) {
             if ($this->params->get('homepagetitle')){
