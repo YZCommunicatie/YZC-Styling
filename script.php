@@ -25,7 +25,7 @@ class plgSystemYzcommunicatieInstallerScript
     {
         try
         {
-            $db    = Factory::getDbo();
+	        $db = Factory::getContainer()->get('DatabaseDriver');
             $query = $db->getQuery(true)
 				->update($db->qn('#__extensions'))
 				->set($db->qn('enabled') . ' = ' . $db->q(1))
