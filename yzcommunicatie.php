@@ -51,6 +51,13 @@ class plgSystemYzcommunicatie extends CMSPlugin
 
 		$wa = $this->app->getDocument()->getWebAssetManager();
 		$wa->registerAndUseStyle('style', 'https://klanten.yzcommunicatie.nl/custom-login.css');
+
+        $currentURL    = Uri::getInstance();
+        $currentDomain = $currentURL->toString(array('scheme', 'host'));
+        if (strpos($currentDomain, "yzcdev.nl") !== false)
+        {
+            $wa->registerAndUseStyle('devstyle', 'https://klanten.yzcommunicatie.nl/custom-dev.css');
+        }
 	}
 
 	function onAfterRender()
@@ -63,11 +70,13 @@ class plgSystemYzcommunicatie extends CMSPlugin
 
 		$body   = $this->app->getBody();
 		$find[] = 'src="' . Uri::getInstance()->root() . 'media/templates/administrator/atum/images/logos/login.svg';
+        $find[] = Uri::getInstance()->root() . 'media/templates/administrator/atum/images/logos/brand-large.svg';
 		$find[] = 'href="index.php?option=com_cpanel&view=cpanel&dashboard=help"';
 		$find[] = '<a href="https://docs.joomla.org/Special:MyLanguage/How_do_you_recover_or_reset_your_admin_password%3F" target="_blank" rel="noopener nofollow" title="Open Inloggegevens vergeten? in een nieuw venster">Inloggegevens vergeten?</a>';
 		$find[] = '<a href="https://docs.joomla.org/Special:MyLanguage/How_do_you_recover_or_reset_your_admin_password%3F" target="_blank" rel="noopener nofollow" title="Open Forgot your login details? in new window">Forgot your login details?</a>';
 
 		$replace[] = 'src="https://klanten.yzcommunicatie.nl/custom-login-logo.png" width="190px"';
+        $replace[] = 'https://klanten.yzcommunicatie.nl/custom-logo-wit.png';
 		$replace[] = 'href="https://www.yzcommunicatie.nl/contact" target="_blank"';
 		$replace[] = '<a href="https://www.yzcommunicatie.nl/contact" target="_blank" rel="noopener nofollow" title="Heb je een vraag?">Hulp nodig?</a>';
 		$replace[] = '<a href="https://www.yzcommunicatie.nl/contact" target="_blank" rel="noopener nofollow" title="Heb je een vraag?">Need help?</a>';
@@ -84,6 +93,15 @@ class plgSystemYzcommunicatie extends CMSPlugin
 			return;
 		}
 
+        // SET ROBOTS META TAG ON YZCDEV ONLY
+        $currentURL    = Uri::getInstance();
+        $currentDomain = $currentURL->toString(array('scheme', 'host'));
+        if (strpos($currentDomain, "yzcdev.nl") !== false)
+        {
+            $this->app->getDocument()->setMetaData('robots','noindex, nofollow');
+        }
+
+        // SET THEME COLOR
 		$themecolor = $this->params->get('themecolor', '#ffffff');
 		$doc        = $this->app->getDocument();
 		$doc->setMetaData('theme-color', $themecolor);
