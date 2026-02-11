@@ -5,10 +5,10 @@
         <type>plugin</type>
         <client>site</client>
         <folder>system</folder>
-        <version>1.4.0</version>
+        <version>1.4.1</version>
         <downloads>
             <downloadurl type="full" format="zip">
-                https://github.com/YZCommunicatie/YZC-Styling/archive/refs/tags/v1.4.0.zip
+                https://github.com/YZCommunicatie/YZC-Styling/archive/refs/tags/v1.4.1.zip
             </downloadurl>
         </downloads>
         <tags>
