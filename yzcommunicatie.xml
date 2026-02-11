@@ -7,7 +7,7 @@
     <authorUrl>https://www.yzcommunicatie.nl</authorUrl>
     <copyright>Copyright (C) 2026 YZCommunicatie. All rights reserved.</copyright>
     <license>GNU General Public License version 3 or later;</license>
-    <version>1.4.0</version>
+    <version>1.4.2</version>
     <scriptfile>script.php</scriptfile>
     <files>
         <filename plugin="yzcommunicatie">yzcommunicatie.php</filename>
